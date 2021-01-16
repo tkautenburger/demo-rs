@@ -1,0 +1,22 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+      
+# jwt must not be listed when introspection shall be supported
+#        jwt:
+#          issuer-uri: https://map.legendlime.de/auth/realms/Demo
+#          jwk-set-uri: https://map.legendlime.de/auth/realms/Demo/protocol/openid-connect/certs
+
+# introspection works as long as no jwt data is defined
+        opaquetoken:
+          introspection-uri: https://map.legendlime.de/auth/realms/Demo/protocol/openid-connect/token/introspect
+          client-id: demo-resource
+          client-secret: aa8077f8-2799-4abd-a192-5ef39b3504ac
+
+
+logging:
+  level:
+    '[org.springframework.security.oauth2]': DEBUG
+    
+
