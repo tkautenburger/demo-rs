@@ -12,8 +12,7 @@ spring:
         opaquetoken:
           introspection-uri: https://map.legendlime.de/auth/realms/Demo/protocol/openid-connect/token/introspect
           client-id: demo-resource
-          client-secret: aa8077f8-2799-4abd-a192-5ef39b3504ac
-
+          client-secret: ${DEMO-RS-CLIENT-SECRET}
 
 logging:
   level:
