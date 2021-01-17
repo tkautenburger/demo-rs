@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
 
-
 @Configuration
 @ConditionalOnProperty(prefix = "legendlime", value = "local-validation", havingValue = "true")
 public class DemoConfiguration {
@@ -28,6 +27,8 @@ public class DemoConfiguration {
 		OAuth2Error error = new OAuth2Error("invalid_token", "The required audience is missing", null);
 
 		public OAuth2TokenValidatorResult validate(Jwt jwt) {
+			// Check if demo-resource service is contained in the audience claim
+			// This is achieved by assigning the user a client-specific role at the auth service 
 			if (jwt.getAudience().contains("demo-resource")) {
 				return OAuth2TokenValidatorResult.success();
 			} else {
@@ -48,7 +49,6 @@ public class DemoConfiguration {
 
 		return jwtDecoder;
 	}
-
 }
 
 
