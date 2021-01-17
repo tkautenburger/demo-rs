@@ -1,6 +1,7 @@
 package de.legendlime.demo;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
@@ -13,9 +14,10 @@ import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
-/*
+
 
 @Configuration
+@ConditionalOnProperty(prefix = "legendlime", value = "local-validation", havingValue = "true")
 public class DemoConfiguration {
 	
 	@Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
@@ -26,7 +28,7 @@ public class DemoConfiguration {
 		OAuth2Error error = new OAuth2Error("invalid_token", "The required audience is missing", null);
 
 		public OAuth2TokenValidatorResult validate(Jwt jwt) {
-			if (jwt.getAudience().contains("account")) {
+			if (jwt.getAudience().contains("demo-resource")) {
 				return OAuth2TokenValidatorResult.success();
 			} else {
 				return OAuth2TokenValidatorResult.failure(error);
@@ -49,4 +51,4 @@ public class DemoConfiguration {
 
 }
 
-*/
+
