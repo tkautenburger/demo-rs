@@ -1,4 +1,4 @@
-package de.legendlime.demo;
+package de.legendlime.demo.security;
 
 import java.util.Collection;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package de.legendlime.demo;
+package de.legendlime.demo.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,8 +40,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.cors()
         .and()
           .authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/hello")
-              .hasAuthority("ROLE_CLIENT_hello")
+            .antMatchers(HttpMethod.GET).hasAuthority("ROLE_CLIENT_hello")
+            .antMatchers(HttpMethod.POST, "/departments/**").hasAuthority("ROLE_CLIENT_hello")
+            .antMatchers(HttpMethod.DELETE, "/departments/**").hasAuthority("ROLE_CLIENT_hello")
+            .antMatchers(HttpMethod.PUT, "/departments/**").hasAuthority("ROLE_CLIENT_hello")
             .anyRequest()
               .authenticated()
         .and()
@@ -62,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			// Check if demo-resource service is contained in the audience claim
 			// This is achieved by assigning the user a client-specific role at the auth
 			// service
-			if (jwt.getAudience().contains(props.getClientId())) {
+			if (jwt.getAudience() != null && jwt.getAudience().contains(props.getClientId())) {
 				return OAuth2TokenValidatorResult.success();
 			} else {
 				return OAuth2TokenValidatorResult.failure(error);
@@ -83,7 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				return OAuth2TokenValidatorResult.success();
 			}
 			// Check if the issuer URI matches the one in the JWT token
-			if (jwt.getIssuer().toString().contains(issuerUri)) {
+			if (jwt.getIssuer() != null && jwt.getIssuer().toString().contains(issuerUri)) {
 				return OAuth2TokenValidatorResult.success();
 			} else {
 				return OAuth2TokenValidatorResult.failure(error);

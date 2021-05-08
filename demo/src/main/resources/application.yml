@@ -11,6 +11,16 @@ legendlime:
   
 
 spring:
+  application:
+    name: ResourceServer
+
+# demo DB coordinates
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/demo
+    username: ${DEMO-RS-DB-USERNAME}
+    password: ${DEMO-RS-DB-PASSWORD}
+
+
   security:
     oauth2:
       resourceserver:
@@ -27,10 +37,23 @@ spring:
 #          client-id: demo-resource
 #          client-secret: ${DEMO-RS-CLIENT-SECRET}
 
+
+# Tracing configuration
+
+  sleuth:
+    sampler:
+      probability: 1.0
+    opentracing:
+      enabled: true
+
+  zipkin:
+    base-url: http://localhost:9411
+
 logging:
   level:
     '[de.legendlime.demo]': DEBUG
     '[org.springframework.security]': DEBUG
     '[org.springframework.security.oauth2]': DEBUG
-    
+    '[anoop.h.webflux]': DEBUG
+
 
