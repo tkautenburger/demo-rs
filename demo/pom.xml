@@ -6,13 +6,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.2</version>
+		<version>2.4.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.legendlime</groupId>
-	<artifactId>OAuth2ResourceServer</artifactId>
+	<artifactId>oauth2-resource-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>OAuth2ResourceServer</name>
+	<name>oauth2-resource-server</name>
 
 	<properties>
 		<java.version>11</java.version>
@@ -24,17 +24,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
- 			<exclusions>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
-        </dependency>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,7 +43,7 @@
 		</dependency>
 
 		<!-- OAuth2 dependencies -->
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
@@ -67,7 +67,7 @@
 		</dependency>
 
 		<!-- R2DBC reactive data dependencies -->
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
@@ -81,9 +81,9 @@
 			<artifactId>r2dbc-pool</artifactId>
 		</dependency>
 
-		
+
 		<!-- Tracing dependencies -->
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
@@ -101,6 +101,11 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.projectreactor.tools</groupId>
+			<artifactId>blockhound</artifactId>
+			<version>1.0.4.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -123,4 +128,5 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 </project>
