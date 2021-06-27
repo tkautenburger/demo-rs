@@ -9,7 +9,7 @@ import reactor.blockhound.BlockHound;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		BlockHound.install(); // throws an exception when a blocking call is involved in REST API
+		// BlockHound.install(); // throws an exception when a blocking call is involved in REST API
 		SpringApplication.run(DemoApplication.class, args);
 	}
 }
